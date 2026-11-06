@@ -20,7 +20,7 @@ test('sale case: step 1 to approved across three roles', async ({ page }) => {
   await login(page, 'lekhpal');
   await open(page, ref);
   await page.getByRole('button', { name: /AI जाँच/ }).click();
-  await expect(page.getByText(/AI उपलब्ध नहीं/)).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByLabel('gata_no')).toBeVisible({ timeout: 60_000 }); // AI result or fallback, both render fields
   await page.getByLabel('मैंने जाँच कर ली है').check();
   await page.getByRole('button', { name: 'चरण पूरा करें' }).click();
 

@@ -209,7 +209,13 @@ npm run dev                       # http://localhost:3000
 
 Without `LLM_API_KEY` every AI feature runs on its rule and template fallback, so the whole flow still works.
 
-### Using a hosted Supabase project instead of local
+### Hosted demo database (for reviewers)
+
+A hosted Supabase project is already migrated and seeded with the 25 demo cases: `https://onepwwdmsscuuuqgkssj.supabase.co` (already set in `.env.example`). It shares the project with another app, but this app's tables (`applications`, `profiles`, ...) are separate and do not overlap.
+
+The anon and service-role keys are **not** in this repo. Reviewers get them privately; put them in `.env.local` and skip `npx supabase start` and `npm run seed`. The service-role key is required because all writes go through server routes, so the app cannot run fully against the hosted project without it.
+
+### Using your own hosted Supabase project
 
 Set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` to your project's values, apply the two files in `supabase/migrations/` (SQL editor or `supabase db push`), then run `npm run seed`. The seed deletes and recreates rows in `applications` and `land_records`, so use a project where those tables belong to this app.
 
