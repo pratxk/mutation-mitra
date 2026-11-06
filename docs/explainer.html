@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mutation Mitra Explainer</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1b18;--mute:#5f5c55;--line:#d9d6cc;--brand:#166534;--brand-soft:#dcfce7;--warn:#b45309;--warn-soft:#fef3c7;--bad:#b91c1c;--bad-soft:#fee2e2;--ai:#0369a1;--ai-soft:#e0f2fe;--code:#f0eee6}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14130f;--card:#1e1d18;--ink:#efede5;--mute:#a8a49a;--line:#3a382f;--brand:#4ade80;--brand-soft:#14301f;--warn:#fbbf24;--warn-soft:#3a2d0e;--bad:#f87171;--bad-soft:#3b1717;--ai:#38bdf8;--ai-soft:#0f2a3b;--code:#26251f}}
+:root[data-theme=dark]{--bg:#14130f;--card:#1e1d18;--ink:#efede5;--mute:#a8a49a;--line:#3a382f;--brand:#4ade80;--brand-soft:#14301f;--warn:#fbbf24;--warn-soft:#3a2d0e;--bad:#f87171;--bad-soft:#3b1717;--ai:#38bdf8;--ai-soft:#0f2a3b;--code:#26251f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 80px}
+header.hero{padding:56px 0 24px}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
+.hero p{max-width:62ch;color:var(--mute);font-size:1.1rem;margin:0}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:.8rem;color:var(--mute);margin:0 6px 6px 0;background:var(--card)}
+nav.toc{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin:0 -16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap}
+nav.toc a{color:var(--mute);text-decoration:none;font-size:.85rem;padding:4px 10px;border-radius:8px}
+nav.toc a:hover{background:var(--card);color:var(--ink)}
+nav.toc button{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+section{padding-top:48px}
+h2{font-size:1.6rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--mute);margin:0 0 20px;max-width:70ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card h3{margin:0 0 6px;font-size:1.05rem}
+.card p{margin:0;color:var(--mute);font-size:.95rem}
+svg{width:100%;height:auto;display:block}
+svg text{font:13px system-ui,sans-serif;fill:var(--ink)}
+svg .m{fill:var(--mute)}
+svg .box{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .ok{fill:var(--brand-soft);stroke:var(--brand);stroke-width:1.5}
+svg .ai{fill:var(--ai-soft);stroke:var(--ai);stroke-width:1.5}
+svg .bad{fill:var(--bad-soft);stroke:var(--bad);stroke-width:1.5}
+svg .warn{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}
+svg .ln{stroke:var(--mute);stroke-width:1.5;fill:none}
+svg .dash{stroke-dasharray:5 4}
+svg .b{font-weight:700}
+.tag{font-size:.72rem;border-radius:6px;padding:1px 7px;font-weight:600;display:inline-block}
+.t-ai{background:var(--ai-soft);color:var(--ai)}.t-rule{background:var(--brand-soft);color:var(--brand)}.t-human{background:var(--warn-soft);color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mute);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+code,pre{background:var(--code);border-radius:6px;font:.85rem ui-monospace,Menlo,monospace}
+code{padding:1px 6px}pre{padding:12px;overflow:auto}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.step::before{counter-increment:s;content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--brand);color:var(--bg);display:grid;place-items:center;font-weight:700}
+.step h3{margin:0 0 2px;font-size:1.05rem}.step p{margin:0;color:var(--mute);font-size:.95rem}
+.calc label{display:block;font-size:.9rem;margin:10px 0 2px}
+.calc input[type=range]{width:100%}
+.calc .out{font-size:2.2rem;font-weight:800}
+.bucket{display:inline-block;border-radius:8px;padding:4px 12px;font-weight:700}
+.b-urgent{background:var(--bad-soft);color:var(--bad)}.b-soon{background:var(--warn-soft);color:var(--warn)}.b-normal{background:var(--brand-soft);color:var(--brand)}
+.stat{font-size:2rem;font-weight:800;color:var(--brand);line-height:1}
+footer{margin-top:60px;color:var(--mute);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="pill">Next.js 14</span><span class="pill">Supabase Postgres + RLS</span><span class="pill">Gemini</span><span class="pill">Hindi-first</span><span class="pill">TypeScript</span>
+  <h1>Mutation Mitra <span style="color:var(--mute)">म्यूटेशन मित्र</span></h1>
+  <p>A workflow tool for Indian revenue officers who process land record mutation (दाखिल-खारिज). AI suggests. The officer decides. Everything is auditable.</p>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#problem">Problem</a><a href="#flow">Flow</a><a href="#roles">Roles</a><a href="#arch">Architecture</a><a href="#ai">AI request</a><a href="#txn">Transition</a><a href="#data">Data</a><a href="#priority">Priority</a><a href="#safety">Safety</a><a href="#eval">Evidence</a>
+  <button id="theme" aria-label="Toggle theme">◐</button>
+</nav>
+
+<section id="problem">
+  <h2>The problem</h2>
+  <p class="lead">When land is sold or inherited, the new owner's name must be written into the revenue record (खतौनी). The path today is slow and full of rework.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Files wait</h3><p>Paper or slow portals. Cases sit between desks and nobody knows which is most urgent.</p></div>
+    <div class="card"><h3>Late returns</h3><p>Missing papers or mismatched name, area or गाटा number are found only after days in the queue.</p></div>
+    <div class="card"><h3>Repeated writing</h3><p>Officers rewrite the same field notes, summaries and orders again and again.</p></div>
+  </div>
+</section>
+
+<section id="flow">
+  <h2>The four-step flow</h2>
+  <p class="lead">Each case moves through four desks. A return always goes back one step, never to the start. A decided case is read-only.</p>
+  <div class="card">
+  <svg viewBox="0 0 900 250" role="img" aria-label="Four step workflow with returns">
+    <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="var(--mute)"/></marker></defs>
+    <g class="b">
+      <rect class="box" x="10" y="60" width="190" height="100" rx="12"/><text x="105" y="88" text-anchor="middle">1 · Document check</text>
+      <rect class="box" x="240" y="60" width="190" height="100" rx="12"/><text x="335" y="88" text-anchor="middle">2 · Field inspection</text>
+      <rect class="box" x="470" y="60" width="190" height="100" rx="12"/><text x="565" y="88" text-anchor="middle">3 · Review</text>
+      <rect class="box" x="700" y="60" width="190" height="100" rx="12"/><text x="795" y="88" text-anchor="middle">4 · Decision</text>
+    </g>
+    <g class="m" text-anchor="middle">
+      <text x="105" y="110">Lekhpal · लेखपाल</text><text x="335" y="110">Lekhpal · लेखपाल</text><text x="565" y="110">Kanungo · कानूनगो</text><text x="795" y="110">Tehsildar · तहसीलदार</text>
+      <text x="105" y="134">rules + AI extract</text><text x="335" y="134">voice note + AI structure</text><text x="565" y="134">AI summary + risks</text><text x="795" y="134">AI drafts the order</text>
+    </g>
+    <path class="ln" d="M200 110 H238" marker-end="url(#a)"/><path class="ln" d="M430 110 H468" marker-end="url(#a)"/><path class="ln" d="M660 110 H698" marker-end="url(#a)"/>
+    <path class="ln dash" d="M795 160 V205 H565 V162" marker-end="url(#a)"/><text x="680" y="222" text-anchor="middle" class="m">Tehsildar returns to step 3 (reason required)</text>
+    <path class="ln dash" d="M565 160 V190 H335 V162" marker-end="url(#a)"/><text x="450" y="184" text-anchor="middle" class="m">Kanungo returns to step 2</text>
+    <path class="ln dash" d="M335 60 V30 H105 V58" marker-end="url(#a)"/><text x="220" y="22" text-anchor="middle" class="m">Lekhpal steps back (no reason)</text>
+    <rect class="ok" x="755" y="6" width="130" height="30" rx="8"/><text x="820" y="26" text-anchor="middle" class="b">Approved ✓</text>
+  </svg>
+  </div>
+  <div class="steps" style="margin-top:18px">
+    <div class="step"><div><h3>Document check <span class="tag t-rule">rules</span> <span class="tag t-ai">AI</span></h3><p>Checklist of required papers and a deed-vs-record table. The rules engine flags gata, area, name and owner mismatches instantly. AI reads the deed and extracts fields, each with its source quote.</p></div></div>
+    <div class="step"><div><h3>Field inspection <span class="tag t-ai">AI</span></h3><p>Lekhpal speaks (Hindi) or types a note. It autosaves even offline. AI turns it into a structured report: possession, boundaries, structures, objections, persons met, conclusion.</p></div></div>
+    <div class="step"><div><h3>Review <span class="tag t-ai">AI</span> <span class="tag t-human">human</span></h3><p>One screen with flags, the field report and a short Hindi AI summary with evidence-backed risks. Kanungo recommends approve, reject or return.</p></div></div>
+    <div class="step"><div><h3>Decision <span class="tag t-ai">AI</span> <span class="tag t-human">human</span></h3><p>AI drafts the order text. Tehsildar edits it, presses a decision button, and confirms a dialog that shows the final text.</p></div></div>
+  </div>
+</section>
+
+<section id="roles">
+  <h2>Who can do what</h2>
+  <p class="lead">Checked in the server and again by Postgres Row Level Security.</p>
+  <div class="card" style="overflow:auto"><table>
+    <tr><th>Action</th><th>Lekhpal</th><th>Kanungo</th><th>Tehsildar</th></tr>
+    <tr><td>Complete steps 1 and 2</td><td>✔</td><td></td><td></td></tr>
+    <tr><td>Recommend (step 3)</td><td></td><td>✔</td><td></td></tr>
+    <tr><td>Decide (step 4)</td><td></td><td></td><td>✔</td></tr>
+    <tr><td>Return a case</td><td>2→1, no reason</td><td>✔ reason</td><td>✔ reason</td></tr>
+    <tr><td>Ask AI for help</td><td colspan="3">only the owner of the current step</td></tr>
+  </table></div>
+</section>
+
+<section id="arch">
+  <h2>Architecture</h2>
+  <p class="lead">One Next.js service, one database, one deploy target. The browser never talks to Gemini and never holds the service key.</p>
+  <div class="card">
+  <svg viewBox="0 0 900 330" role="img" aria-label="System architecture">
+    <rect class="box" x="10" y="130" width="150" height="70" rx="12"/><text class="b" x="85" y="160" text-anchor="middle">Officer</text><text class="m" x="85" y="180" text-anchor="middle">phone or desktop</text>
+    <rect class="ok" x="230" y="20" width="400" height="290" rx="16"/><text class="b" x="430" y="46" text-anchor="middle">Next.js app (Vercel)</text>
+    <rect class="box" x="250" y="62" width="360" height="42" rx="8"/><text x="430" y="88" text-anchor="middle">UI · Hindi / English · 4 step panels</text>
+    <rect class="box" x="250" y="116" width="360" height="42" rx="8"/><text x="430" y="142" text-anchor="middle">API routes · auth · tehsil scope · rate limit</text>
+    <rect class="box" x="250" y="170" width="110" height="60" rx="8"/><text class="b" x="305" y="196" text-anchor="middle">Workflow</text><text class="m" x="305" y="214" text-anchor="middle">roles + plan</text>
+    <rect class="box" x="375" y="170" width="110" height="60" rx="8"/><text class="b" x="430" y="196" text-anchor="middle">Rules</text><text class="m" x="430" y="214" text-anchor="middle">no network</text>
+    <rect class="ai" x="500" y="170" width="110" height="60" rx="8"/><text class="b" x="555" y="196" text-anchor="middle">AI service</text><text class="m" x="555" y="214" text-anchor="middle">+ fallbacks</text>
+    <rect class="box" x="250" y="244" width="360" height="52" rx="8"/><text x="430" y="266" text-anchor="middle">Priority score · i18n · offline drafts (IndexedDB)</text><text class="m" x="430" y="284" text-anchor="middle">light pages, about 185 kB first-load JS</text>
+    <rect class="box" x="720" y="40" width="170" height="110" rx="12"/><text class="b" x="805" y="68" text-anchor="middle">Supabase</text><text class="m" x="805" y="90" text-anchor="middle">Postgres · 7 tables</text><text class="m" x="805" y="108" text-anchor="middle">Auth · RLS</text><text class="m" x="805" y="126" text-anchor="middle">apply_transition()</text>
+    <rect class="ai" x="720" y="200" width="170" height="90" rx="12"/><text class="b" x="805" y="232" text-anchor="middle">Gemini API</text><text class="m" x="805" y="254" text-anchor="middle">server-side only</text><text class="m" x="805" y="272" text-anchor="middle">JSON, validated</text>
+    <path class="ln" d="M160 165 H228" marker-end="url(#a)"/><text class="m" x="194" y="156" text-anchor="middle">HTTPS</text>
+    <path class="ln" d="M630 100 H718" marker-end="url(#a)"/><path class="ln" d="M610 215 Q665 245 718 245" marker-end="url(#a)"/>
+  </svg>
+  </div>
+</section>
+
+<section id="ai">
+  <h2>What happens when someone presses an AI button</h2>
+  <p class="lead">AI is an optional helper wrapped in checks. If any check fails, a rule-based fallback answers instead and the officer can still finish the step.</p>
+  <div class="card">
+  <svg viewBox="0 0 900 400" role="img" aria-label="AI request lifecycle">
+    <g class="b" text-anchor="middle">
+      <text x="70" y="24">Browser</text><text x="300" y="24">API route</text><text x="540" y="24">LLM wrapper</text><text x="800" y="24">Database</text>
+    </g>
+    <g stroke="var(--line)" stroke-width="1.5"><path d="M70 34 V390"/><path d="M300 34 V390"/><path d="M540 34 V390"/><path d="M800 34 V390"/></g>
+    <g class="ln">
+      <path d="M72 60 H298" marker-end="url(#a)"/>
+      <path d="M302 150 H538" marker-end="url(#a)"/>
+      <path class="dash" d="M538 252 H302" marker-end="url(#a)"/>
+      <path d="M302 330 H798" marker-end="url(#a)"/>
+      <path d="M298 370 H72" marker-end="url(#a)"/>
+    </g>
+    <g class="m" text-anchor="middle">
+      <text x="185" y="52">POST /api/ai/extract {caseId}</text>
+      <text x="420" y="142">masked prompt</text>
+      <text x="420" y="244">valid JSON, or error</text>
+      <text x="550" y="322">save suggestion + event</text>
+      <text x="185" y="362">output + usedFallback</text>
+    </g>
+    <rect class="ok" x="312" y="72" width="226" height="48" rx="8"/><text x="425" y="92" text-anchor="middle" class="b">checks</text><text x="425" y="110" text-anchor="middle" class="m">login · tehsil · role · step · 10/min</text>
+    <rect class="ai" x="552" y="162" width="236" height="66" rx="8"/><text x="670" y="183" text-anchor="middle" class="b">Gemini call</text><text x="670" y="201" text-anchor="middle" class="m">15 s timeout · retry 429/5xx</text><text x="670" y="218" text-anchor="middle" class="m">Zod schema · quote grounding</text>
+    <rect class="warn" x="312" y="264" width="226" height="30" rx="8"/><text x="425" y="284" text-anchor="middle">on any failure: rule/template fallback</text>
+  </svg>
+  </div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card"><h3>Grounded</h3><p>Every extracted field must quote the deed. If the quote is not in the text, the field is shown as "unverified".</p></div>
+    <div class="card"><h3>Logged</h3><p>Each suggestion is stored, then marked accepted, edited or ignored. The timeline shows it.</p></div>
+  </div>
+</section>
+
+<section id="txn">
+  <h2>Moving a case safely</h2>
+  <p class="lead">Every status change goes through one endpoint and one database function, so two people clicking at once cannot corrupt a case.</p>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div><h3>Plan</h3><p><code>planTransition()</code> checks role and stage, validates the saved step data, and requires a reason for returns and rejects, or the order text for approve and reject.</p></div></div>
+      <div class="step"><div><h3>Apply atomically</h3><p><code>apply_transition</code> locks the row, refuses a stale stage, updates stage or outcome, writes the history event and closes any open AI suggestion, in one transaction.</p></div></div>
+      <div class="step"><div><h3>Append-only history</h3><p><code>application_events</code> has no update or delete permission. It is the audit trail.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="data">
+  <h2>Data model</h2>
+  <div class="card">
+  <svg viewBox="0 0 900 270" role="img" aria-label="Data model">
+    <g class="b">
+      <rect class="box" x="10" y="10" width="170" height="64" rx="8"/><text x="95" y="36" text-anchor="middle">profiles</text><text class="m" x="95" y="56" text-anchor="middle" style="font-weight:400">role · tehsil</text>
+      <rect class="ok" x="350" y="10" width="200" height="64" rx="8"/><text x="450" y="36" text-anchor="middle">applications</text><text class="m" x="450" y="56" text-anchor="middle" style="font-weight:400">stage · outcome · SLA</text>
+      <rect class="box" x="720" y="10" width="170" height="64" rx="8"/><text x="805" y="36" text-anchor="middle">land_records</text><text class="m" x="805" y="56" text-anchor="middle" style="font-weight:400">synthetic खतौनी</text>
+      <rect class="box" x="10" y="190" width="170" height="64" rx="8"/><text x="95" y="216" text-anchor="middle">documents</text><text class="m" x="95" y="236" text-anchor="middle" style="font-weight:400">type · extracted text</text>
+      <rect class="box" x="215" y="190" width="170" height="64" rx="8"/><text x="300" y="216" text-anchor="middle">step_data</text><text class="m" x="300" y="236" text-anchor="middle" style="font-weight:400">one per case per step</text>
+      <rect class="ai" x="410" y="190" width="220" height="64" rx="8"/><text x="520" y="216" text-anchor="middle">ai_suggestions</text><text class="m" x="520" y="236" text-anchor="middle" style="font-weight:400;font-size:12px">shown → accepted / edited / ignored</text>
+      <rect class="warn" x="655" y="190" width="235" height="64" rx="8"/><text x="772" y="216" text-anchor="middle">application_events</text><text class="m" x="772" y="236" text-anchor="middle" style="font-weight:400">insert-only history</text>
+    </g>
+    <g class="ln">
+      <path d="M180 42 H348"/><path d="M552 42 H718"/>
+      <path d="M370 74 V114 H95 V188"/><path d="M410 74 V132 H300 V188"/><path d="M490 74 V188"/><path d="M530 74 V114 H772 V188"/>
+    </g>
+  </svg>
+  </div>
+</section>
+
+<section id="priority">
+  <h2>Priority score (try it)</h2>
+  <p class="lead">The dashboard sorts by this score so the most urgent case is always on top.</p>
+  <div class="grid g2">
+    <div class="card calc">
+      <label>Days in queue: <b id="vd">30</b><input id="d" type="range" min="0" max="90" value="30"></label>
+      <label>SLA days: <b id="vs">45</b><input id="s" type="range" min="15" max="90" value="45"></label>
+      <label>High-severity flags: <b id="vf">1</b><input id="f" type="range" min="0" max="5" value="1"></label>
+      <label>Returns: <b id="vr">1</b><input id="r" type="range" min="0" max="5" value="1"></label>
+      <label><input id="o" type="checkbox" checked> Objection recorded</label>
+    </div>
+    <div class="card">
+      <p>Score</p><div class="out" id="score">0</div>
+      <p style="margin:8px 0"><span class="bucket" id="bucket"></span></p>
+      <pre>100 × days / SLA
+ + 15 × high flags
+ +  5 × returns
+ + 10 if objection</pre>
+      <p>Urgent: score ≥ 100 or past SLA · Soon: 60–99 · Normal: below 60</p>
+    </div>
+  </div>
+</section>
+
+<section id="safety">
+  <h2>Design principles</h2>
+  <div class="grid g2">
+    <div class="card"><h3>The officer decides</h3><p>No code path lets AI change a case's status. Only a human click reaches the transition API.</p></div>
+    <div class="card"><h3>Works without AI</h3><p>Every AI feature has a rules or template fallback. With no API key the full flow still works.</p></div>
+    <div class="card"><h3>Field-first</h3><p>Mobile layout, 48 px tap targets, Hindi by default, voice optional, drafts survive a bad network.</p></div>
+    <div class="card"><h3>Auditable</h3><p>Append-only events, plus a record of every AI suggestion and what the human did with it.</p></div>
+  </div>
+</section>
+
+<section id="eval">
+  <h2>Evidence</h2>
+  <p class="lead">20 synthetic deeds, 8 with seeded problems, run on <code>gemini-3.1-flash-lite</code> (free tier).</p>
+  <div class="grid g3">
+    <div class="card"><div class="stat">100%</div><p>field accuracy<br>40 of 40</p></div>
+    <div class="card"><div class="stat">100%</div><p>seeded-problem recall<br>8 of 8</p></div>
+    <div class="card"><div class="stat">0%</div><p>false flags on clean cases<br>0 of 12</p></div>
+  </div>
+  <div class="card" style="margin-top:12px"><h3>Honest caveats</h3><p>The synthetic deeds are short and clean, so real scans will score lower. 3 of 20 calls fell back because of free-tier rate limits, not bad output. A plain regex fallback also scores 100% on this easy set, so this shows the pipeline works, not that the LLM beats regex. Tests: 15 unit/contract tests and 2 Playwright flows (Step 1 to Approved across three roles, and a return path).</p></div>
+</section>
+
+<footer>
+  Assumes Uttar Pradesh process terms. The 45-day SLA and document lists are placeholders to verify with a real officer. All data is synthetic. See the README for run instructions.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function calc(){
+  const d=+$('d').value,s=+$('s').value,f=+$('f').value,r=+$('r').value,o=$('o').checked;
+  $('vd').textContent=d;$('vs').textContent=s;$('vf').textContent=f;$('vr').textContent=r;
+  const sc=100*d/s+15*f+5*r+(o?10:0);
+  const k=(d>s||sc>=100)?'urgent':sc>=60?'soon':'normal';
+  $('score').textContent=sc.toFixed(1);
+  const b=$('bucket');b.textContent={urgent:'अति आवश्यक · Urgent',soon:'जल्द · Soon',normal:'सामान्य · Normal'}[k];b.className='bucket b-'+k;
+}
+['d','s','f','r','o'].forEach(i=>$(i).addEventListener('input',calc));calc();
+$('theme').addEventListener('click',()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+});
+</script>
+</body>
+</html>
