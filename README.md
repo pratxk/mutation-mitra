@@ -2,10 +2,13 @@
 
 > A Hindi-first workflow tool that helps field and tehsil-level revenue officers process **दाखिल-खारिज** (land record mutation) applications faster, with AI that suggests and humans that decide.
 
+**Live demo:** https://mutation-mitra.vercel.app (log in with the [demo accounts](#18-demo-accounts); best on a phone).
+
 **For reviewers:** open [`docs/explainer.html`](docs/explainer.html) in a browser for a visual walkthrough (flow, architecture, AI request lifecycle, data model). This README is the written version.
 
 | | |
 |---|---|
+| Live | https://mutation-mitra.vercel.app (Vercel + hosted Supabase, seeded with 25 synthetic cases) |
 | Stack | Next.js 14 (App Router) · TypeScript · Tailwind · Supabase (Postgres, Auth, RLS) · Zod · next-intl |
 | AI | Google Gemini behind a provider-agnostic wrapper (Anthropic also supported) |
 | Tests | 15 unit/contract tests (Vitest) · 2 end-to-end flows (Playwright) · AI eval script |
