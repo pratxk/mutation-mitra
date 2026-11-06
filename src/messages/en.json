@@ -1,0 +1,18 @@
+{
+  "app": { "name": "Mutation Mitra", "tagline": "Land record mutation assistant" },
+  "common": { "logout": "Log out", "loading": "Loading…", "error": "Something went wrong. Try again.", "saved": "Saved", "saving": "Saving…", "offlineDraft": "Offline — draft kept on this phone", "save": "Save", "cancel": "Cancel", "confirm": "Confirm", "days": "days", "none": "None", "all": "All", "mine": "My cases", "empty": "No cases found", "lang": "हिन्दी" },
+  "login": { "title": "Login", "email": "Email", "password": "Password", "submit": "Sign in", "fail": "Wrong email or password", "demo": "Demo accounts" },
+  "role": { "lekhpal": "Lekhpal", "kanungo": "Kanungo", "tehsildar": "Tehsildar", "admin": "Admin" },
+  "bucket": { "urgent": "Urgent", "soon": "Soon", "normal": "Normal" },
+  "caseType": { "sale": "Sale deed", "inheritance": "Inheritance" },
+  "stage": { "step1_intake": "Document check", "step2_field": "Field inspection", "step3_review": "Review", "step4_decision": "Decision" },
+  "outcome": { "approved": "Approved", "rejected": "Rejected" },
+  "case": { "step": "Step {n} / 4", "overdue": "Past deadline", "returned": "Returned {n}×", "tabs": { "work": "Work", "docs": "Documents", "history": "History" }, "readonly": "This step is read-only for you", "terminal": "Case decided" },
+  "step1": { "checklist": "Required documents", "compare": "Deed vs record", "deed": "Deed / application", "record": "Khatauni record", "gata": "Gata no.", "area": "Area (sq m)", "owner": "Owner / seller", "ai": "AI check", "aiRunning": "Checking…", "confirm": "I have verified this", "complete": "Complete step", "flags": "Discrepancies", "noFlags": "No discrepancies", "quote": "Source text", "unverified": "Unverified", "check": "Check", "fallback": "AI unavailable — showing rule-based checks" },
+  "step2": { "mic": "Speak", "micStop": "Stop", "micUnsupported": "Voice not supported in this browser — type instead", "note": "Inspection note", "structure": "Organise", "possession": "Possession", "boundaries": "Boundaries", "structures": "Structures on plot", "objections": "Objections", "persons": "Persons met", "conclusion": "Conclusion", "unclear": "Unclear points", "objectionToggle": "Objection recorded", "back": "Go to previous step", "complete": "Submit report" },
+  "step3": { "summary": "Summary", "risks": "Risks", "suggest": "AI summary", "recommend": "Recommendation", "approve": "Approve", "reject": "Reject", "return": "Return", "note": "Note", "submit": "Send recommendation" },
+  "step4": { "kanungo": "Kanungo's recommendation", "draft": "Draft order", "draftBtn": "Draft order", "reason": "Reason", "confirmTitle": "Confirm final order", "hint": "AI only drafts; the decision is yours" },
+  "timeline": { "submitted": "Application received", "step_completed": "Step completed", "ai_suggested": "AI suggested", "ai_accepted": "AI suggestion accepted", "ai_edited": "AI suggestion edited", "ai_ignored": "AI suggestion ignored", "returned": "Returned", "stepped_back": "Went to previous step", "approved": "Approved", "rejected": "Rejected", "system": "System" },
+  "flag": { "missing_doc": "Document missing", "gata_mismatch": "Gata number mismatch", "area_diff": "Area difference", "name_variant": "Name spelling differs", "owner_mismatch": "Seller differs from recorded owner", "sla_overdue": "Past deadline" },
+  "doc": { "sale_deed": "Sale deed", "khatauni_copy": "Khatauni copy", "id_proof": "ID proof", "death_cert": "Death certificate", "vanshavali": "Family tree", "affidavit": "Affidavit" }
+}

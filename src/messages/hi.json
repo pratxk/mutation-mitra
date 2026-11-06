@@ -1,0 +1,18 @@
+{
+  "app": { "name": "म्यूटेशन मित्र", "tagline": "दाखिल-खारिज प्रक्रिया सहायक" },
+  "common": { "logout": "लॉग आउट", "loading": "लोड हो रहा है…", "error": "कुछ गड़बड़ हुई। पुनः प्रयास करें।", "saved": "सहेजा गया", "saving": "सहेज रहे हैं…", "offlineDraft": "ऑफ़लाइन — मसौदा फ़ोन में सुरक्षित है", "save": "सहेजें", "cancel": "रद्द करें", "confirm": "पुष्टि करें", "days": "दिन", "none": "कोई नहीं", "all": "सभी", "mine": "मेरे प्रकरण", "empty": "कोई प्रकरण नहीं मिला", "lang": "English" },
+  "login": { "title": "लॉगिन", "email": "ईमेल", "password": "पासवर्ड", "submit": "प्रवेश करें", "fail": "ईमेल या पासवर्ड गलत है", "demo": "डेमो खाते" },
+  "role": { "lekhpal": "लेखपाल", "kanungo": "राजस्व निरीक्षक", "tehsildar": "तहसीलदार", "admin": "प्रशासक" },
+  "bucket": { "urgent": "अति आवश्यक", "soon": "जल्द", "normal": "सामान्य" },
+  "caseType": { "sale": "बैनामा", "inheritance": "वरासत" },
+  "stage": { "step1_intake": "दस्तावेज़ जाँच", "step2_field": "मौक़ा निरीक्षण", "step3_review": "समीक्षा", "step4_decision": "निर्णय" },
+  "outcome": { "approved": "स्वीकृत", "rejected": "अस्वीकृत" },
+  "case": { "step": "चरण {n} / 4", "overdue": "समय-सीमा पार", "returned": "{n} बार वापस", "tabs": { "work": "कार्य", "docs": "दस्तावेज़", "history": "इतिहास" }, "readonly": "यह चरण आपके लिए केवल देखने हेतु है", "terminal": "प्रकरण निर्णीत" },
+  "step1": { "checklist": "आवश्यक दस्तावेज़", "compare": "विलेख बनाम अभिलेख", "deed": "विलेख/आवेदन", "record": "खतौनी अभिलेख", "gata": "गाटा संख्या", "area": "रकबा (वर्ग मी.)", "owner": "स्वामी/विक्रेता", "ai": "AI जाँच", "aiRunning": "जाँच हो रही है…", "confirm": "मैंने जाँच कर ली है", "complete": "चरण पूरा करें", "flags": "विसंगतियाँ", "noFlags": "कोई विसंगति नहीं", "quote": "स्रोत पाठ", "unverified": "असत्यापित", "check": "जाँचें", "fallback": "AI उपलब्ध नहीं — नियम-आधारित जाँच दिखाई गई" },
+  "step2": { "mic": "बोलकर लिखें", "micStop": "रोकें", "micUnsupported": "इस ब्राउज़र में आवाज़ उपलब्ध नहीं — टाइप करें", "note": "निरीक्षण टिप्पणी", "structure": "व्यवस्थित करें", "possession": "कब्ज़ा", "boundaries": "सीमाएँ", "structures": "भूमि पर निर्माण", "objections": "आपत्तियाँ", "persons": "मिले व्यक्ति", "conclusion": "निष्कर्ष", "unclear": "अस्पष्ट बिंदु", "objectionToggle": "आपत्ति दर्ज हुई", "back": "पिछले चरण पर जाएँ", "complete": "रिपोर्ट जमा करें" },
+  "step3": { "summary": "सारांश", "risks": "जोखिम", "suggest": "AI सारांश", "recommend": "संस्तुति", "approve": "स्वीकृत करें", "reject": "अस्वीकृत करें", "return": "वापस भेजें", "note": "टिप्पणी", "submit": "संस्तुति भेजें" },
+  "step4": { "kanungo": "राजस्व निरीक्षक की संस्तुति", "draft": "आदेश का मसौदा", "draftBtn": "मसौदा बनाएँ", "reason": "कारण", "confirmTitle": "अंतिम आदेश की पुष्टि", "hint": "AI केवल मसौदा देता है; निर्णय आपका है" },
+  "timeline": { "submitted": "आवेदन प्राप्त", "step_completed": "चरण पूरा", "ai_suggested": "AI सुझाव दिया", "ai_accepted": "AI सुझाव स्वीकार", "ai_edited": "AI सुझाव संपादित", "ai_ignored": "AI सुझाव अनदेखा", "returned": "वापस भेजा", "stepped_back": "पिछले चरण पर गए", "approved": "स्वीकृत", "rejected": "अस्वीकृत", "system": "प्रणाली" },
+  "flag": { "missing_doc": "दस्तावेज़ अनुपलब्ध", "gata_mismatch": "गाटा संख्या में अंतर", "area_diff": "रकबे में अंतर", "name_variant": "नाम की वर्तनी में अंतर", "owner_mismatch": "विक्रेता अभिलेख के स्वामी से भिन्न", "sla_overdue": "समय-सीमा पार" },
+  "doc": { "sale_deed": "बैनामा", "khatauni_copy": "खतौनी नकल", "id_proof": "पहचान पत्र", "death_cert": "मृत्यु प्रमाण पत्र", "vanshavali": "वंशावली", "affidavit": "शपथ पत्र" }
+}
